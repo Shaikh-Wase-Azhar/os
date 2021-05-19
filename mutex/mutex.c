@@ -2,15 +2,23 @@
 #include<pthread.h>
 #include<unistd.h>
 
+pthread_mutex_t count_mutex;
+
 int count=0;
 void *inc_thread(void *arg)
 {
-while (1){count++; printf("inc thread:%d\n",count);}
+while (1){//Lock
+          count++;
+          //Unlock
+          printf("inc thread:%d\n",count);}
 }
 
 void *dec_thread(void *arg)
 {
-while (1){count--; printf("dec thread:%d\n",count);}
+while (1){//Lock
+          count--; 
+          //Unlock
+          printf("dec thread:%d\n",count);}
 }
 
 int main(){
